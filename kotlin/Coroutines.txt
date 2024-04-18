@@ -1,0 +1,53 @@
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+
+Scope (life of the task): 
+Global Scope - working until app dead
+Lifecycle Scope
+ViewModel Scope
+
+Dispatchers (which thread):
+Dispatchers.main - UI / Nonblocking operations
+Dispatchers.IO - Network & Disk operations
+Dispatchers.Default - CPU intensive operations
+
+
+//Create worker in another thread
+CoroutineScope(Dispatchers.IO).launch{
+	//load function
+}
+
+//Change thread in CoroutineScope
+// you need use suspend function
+withContext(Dispatchers.main){
+
+}
+-----------------------------------------------
+
+CoroutineScope(Dispatchers.IO).launch{
+	Log.v("TAGY", "The App started")
+
+	val one = async {
+		doSomeThingUseful1()
+	}
+	val two = async {
+		doSomeThingUseful2()
+	}
+	
+	val result = one.await() + two.await()
+	Log.v("TAGY", "The Result is: $result")
+}
+
+
+suspend fun doSomeThingUseful1(): Int{
+	delay(5000)
+	Log.v("TAGY", "Fun1 is DONE")
+	return 11
+}
+
+
+suspend fun doSomeThingUseful2(): Int{
+	delay(7000)
+	Log.v("TAGY", "Fun2 is DONE")
+	return 8
+}
+

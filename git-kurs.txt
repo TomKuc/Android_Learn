@@ -1,0 +1,84 @@
+(global, system, local) [przestrzenie w git]
+
+git config --global user.name "Tomasz Kuczynski"
+git config --global user.email "tomaszkuczynski14@gmail.com"
+git config --global --list [lista wprowadzonych zmian]
+git config --global alias.gr 'log --graph --oneline --all [tworzenie aliasów]
+
+git init 
+git status
+git status nazwaFolderu/
+git add nazwaPliku
+git add * [* oznacza wszystkie możliwości]
+git add -p nazwaPliku [dodanie niektórych zmian z pliku] 
+git add -A [dodaje wszystkie pliki]
+git commit -m "opis zmian"
+git show [pokazuje dane najnowszego commita]
+git log [lista comitów]
+git log --graph --oneline --all [wszystkie comity w formie grafu]
+git diff [porównanie plików work-stage]
+git diff --staged [porównanie plików stage-repo]
+git diff HEAD [porównanie plików work-repo]
+git checkout head nazwaPliku [wyczyszczenie work do repo]
+git checkout idComita [przeniesienie head do wybranego comita]
+git checkout -f idComita [przeniesienie head do wybranego comita na siłe]
+git checkout nazwaBrancha [przeniesienie head do wybranego brancha]
+git checkout nazwaBrancha~2 [cofa cie o 2 comity od wybranego brancha]
+touch .gitignore [stworzenie pliku zawierającego listę ignorowanych plików]
+	w pliku .gitignore wpiujemy ścieszkę pliku folder/plik, folder/p*, folder/
+	można znaleść gotowy gitignore na internecie
+git clean -nd [pokazuje jakie niesledzone pliki możesz usunąć]
+git clean -fd [usuwa niesledzone pliki] 
+git branch nazwaBrancha idComita/(puste) [tworzy branch na idComit lub na head bez ostatniego parametra]
+git checkout -b nazwaBrancha idComita/(puste) [stworzenie brancha na który wskazuje head]
+
+
+
+git merge nazwaBrancha [mege brancha head z wybranym branchem]
+git merge --no-ff nazwaBrancha [blokuje merge fast f.]
+git merge --abort [przerwanie merga (conflict)]
+git merge --continue
+
+git branch --list
+git branch --merged nazwaBrancha [lista zmerdzowanych branchy do nazwaBrancha]
+git branch --no-merged nazwaBrancha [lista nie zmerdzowanych branchy do nazwaBrancha]
+git branch -m nazwaBrancha1 nazwaBrancha2 [zmienia nazwę nazwaBrancha1 na nazwaBrancha2]
+git branch -d nazwaBrancha [usuwa brancha nazwaBrancha(-D silne usunięcie)]
+git reflog [lista operacji w git]
+
+git reset nazwaPliku [resetuje stage do repo]
+git reset --hard [usuwa wszystko]
+git reset --mixed [usuwa wsystko oprócz working tree]
+git reset --soft [tylko zmienia repo]
+git reset --opcja nazwaComita [resetuje head do wybranego comita]
+git revert idComita1 idComita2 [resetuje zmiany z comitów idComita1-idComita2 i tworzy nowy comit]
+git revert -n idComita [resetuje zmiany z idComita i czeka na potwierdzenie]
+git revert --continue [zatwierdzenie revertu]
+git revert --abort [wycofanie revert]
+
+git remote rm nazwaRemote
+git remote add origin urlRepo [łączy lokalne repo z zdalnym]
+git clone 'link' [klonuje repozytorium]
+git remote [info jakie to zdalne repo]
+git remote -v [jakie są adresy fetch i pusch]
+git branch -r [lista zdalnych brachy]
+git pusch origin master
+git pusch nazwaRemote nazwabrancha [wypycha nazwaBrancha na repo]
+
+Credential Manager -> Windows Credentials -> Generic Credentials
+[miejsce zapisu konta github]
+
+git fetch origin [pobiera repo origin]
+git pull origin master [pobiera branch master i go merdzuje]
+git pull [pobiera repo i go merdzuje]
+git pull --global pull.ff only [wykonuje pula tylko z ff]
+git branch -lavv [lista branchy i informacjie o trackingu]
+git pusch -u origin nazwaBrancha [puszuje zmiany i ustawia tracking]
+git branch -u nazwaBrancha1 nazwaBrancha2 [ustawia traking brancha nazwaBrancha1 branczowi nazwaBrancha2]
+git branch --unset-upstream nazwaBrancha [usuwa traking branchowi nazwaBrancha]
+git checkout -t nazwaBrancha1 [tworzy branch trakujący nazwaBrancha1]
+git push --force [puszowanie na siłe]
+git pull --force [pulowanie na siłe]
+
+git commit --amend [wprowadzenie zmian ostatniego commita bez nowego commita]
+git commit --amend --author="nazwa <email>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "647305030138",
+    "project_id": "journalapp-6ca8a",
+    "storage_bucket": "journalapp-6ca8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647305030138:android:c99eb142312c77018c1c43",
+        "android_client_info": {
+          "package_name": "com.example.firestorejournal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG3qpaiBCHet0tguS7yvkAgg6OuP05Q24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

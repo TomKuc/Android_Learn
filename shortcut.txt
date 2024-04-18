@@ -1,0 +1,3 @@
+alt+insert - create geter and seter
+alt + enter (red mark click) - give you what you need
+ctrl + left muse - show you what parameters you need for function
