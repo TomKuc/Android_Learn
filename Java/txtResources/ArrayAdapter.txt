@@ -1,0 +1,60 @@
+---CustomArrayAdapter---
+CREATE CLASS
+public class MyCustomAdapter extends ArrayAdapter<Planet> {
+	private ArrayList<Planet> = planets;
+	private Context context;
+	
+	public MyCustomAdapter(Context context, ArrayList<Planet> planets) {
+		super(context, R.layout.list_item_layout, planets);
+		this.context = context;
+		this.planets = planets;
+	}
+	
+	private static class ViewHolder {
+		TextView planetText1;
+		TextView planetText2;
+		ImageView planetImg;
+	}
+	
+	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder holder;
+		Planet planet = planets[position];
+		
+		if( convertView == null) {
+			convertView = LayoutInflater.from(context)
+							.inflate(R.layout.list_item_layout, parent, false);
+			
+			holder = new ViewHolder();
+			holder.planetText1 = (TextView) convertView.findViewById(R.id.textView1);
+			holder.planetText2 = (TextView) convertView.findViewById(R.id.textView2);
+			holder.planetImg = (TextView) convertView.findViewById(R.id.imageView);
+			convertView.setTag(holder);
+			
+		}else {
+			holder = convertView.getTag();
+		}
+		
+		holder.planetText1.setText(planet.getPlanetText1);
+		holder.planetText2.setText(planet.getPlanetText2);
+		holder.planetImg.setImageResource(planet.getPlanetImage);
+		
+		return convertView;
+	}
+}
+
+MAIN ACTIVITY
+ListView listView = findViewById(R.id.listView);
+
+ArrayList<Planet> planetArrayList = new ArrayList<>();
+
+Planet planet1 = new Planet("Mercury","0 Moons",R.drawable.mercury);
+Planet planet2 = new Planet("Venus", "0 Moons", R.drawable.venus);
+Planet planet3 = new Planet("Earth","1 Moon",R.drawable.earth);
+
+planetsArrayList.add(planet1);
+planetsArrayList.add(planet2);
+planetsArrayList.add(planet3);
+
+private static MyCustomAdapter adapter;
+adapter = new MyCustomAdapter(planetsArrayList, getApplicationContext());
+listView.setAdapter(adapter);

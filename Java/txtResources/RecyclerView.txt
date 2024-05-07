@@ -1,0 +1,97 @@
+CREATE CLASS
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
+    private List<Item> itemList;
+
+    //click listener
+    public ItemClickListener clickListener;
+    public void setClickListener(ItemClickListener myListener){
+        this.clickListener = myListener;
+    }
+
+    public MyAdapter(List<Item> itemList) {
+        this.itemList = itemList;
+    }
+
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.item_layout,parent, false);
+
+        return new ViewHolder(itemView);
+    }
+
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Item item = itemList.get(position);
+
+        holder.title.setText(item.getItemName());
+        holder.description.setText(item.getItemDesc());
+        holder.imageView.setImageResource(item.getItemImg());
+    }
+
+    public int getItemCount() {
+        return itemList.size();
+    }
+
+
+    //click listener
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
+        ImageView imageView;
+        TextView title;
+        TextView description;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.imageview);
+            title = itemView.findViewById(R.id.title_txt);
+            description = itemView.findViewById(R.id.description_text);
+
+            itemView.setOnClickListener(this);
+        }
+
+        //click listener
+        public void onClick(View v) {
+            if (clickListener != null){
+                clickListener.onCLick(v,getAdapterPosition());
+            }
+        }
+    }
+}
+
+MAIN ACTIVITY
+    RecyclerView recyclerView;
+    List<Item> itemList;
+    MyAdapter myAdapter;
+
+    ---OnCreate
+        recyclerView = findViewById(R.id.recyclerView);
+        itemList = new ArrayList<>();
+
+        Item item1 = new Item(R.drawable.fruit, "Fruits","Fresh Fruits from the Garden");
+        Item item2 = new Item(R.drawable.vegitables, "Vegetables","Delicious Vegetables ");
+        itemList.add(item1);
+        itemList.add(item2);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        myAdapter = new MyAdapter(itemList);
+        recyclerView.setAdapter(myAdapter);
+
+        //click listener
+        myAdapter.setClickListener(this);
+
+
+    ---separate function - click listener
+    public void onCLick(View v, int pos) {
+        Toast.makeText(this,
+                "You Choose: "+ itemList.get(pos).getItemName(),
+                Toast.LENGTH_SHORT).show();
+
+    }
+
+NEW FILE JAVA CLASS - ItemClickListener
+
+public interface ItemClickListener {
+
+    void onCLick(View v, int pos);
+}

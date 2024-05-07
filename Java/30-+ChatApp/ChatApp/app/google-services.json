@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "822594003643",
+    "project_id": "chat-app-d30f5",
+    "storage_bucket": "chat-app-d30f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822594003643:android:e61ce2cd8fa812f8adbf9e",
+        "android_client_info": {
+          "package_name": "com.mastercoding.chatapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC695UAS9Sp3wpeuiVej_hPCsv9z2sn-VA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

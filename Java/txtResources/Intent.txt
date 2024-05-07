@@ -1,0 +1,28 @@
+public void goToSecoundActivity(){
+	Intent intent = new Intent(this, SecoundActivity.class);
+	startActivity(intent);
+}
+
+public void openWebPage(){
+	Uri webpage = Uri.parse("https://www.google.com");
+	Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+	startActivity(intent);
+}
+
+---passing data---
+FROM
+Intent intent = new Intent(getApplicationContext(), SecoundActivity.class);
+intent.putExtra("value", nameOfValue);
+startActivity(intent);
+
+To
+Intent intent = getIntent();
+String valueName = intent.getStringExtra("value");
+
+---share data---
+Intent intent = new Intent(Intent.ACTION_SEND);
+intent.setType("text/plain");
+
+intent.putExtra(Intent.EXTRA_SUBJECT, "value");
+intent.putExtra(Intent.EXTRA_TEXT, "value");
+startActivity(Intent.createChooser(intent, "value"));

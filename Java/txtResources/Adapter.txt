@@ -1,0 +1,62 @@
+---ArrayAdapter--- (list and array)
+listview = findViewById(R.id.listview);
+String[] listName = {"value1", "value2", "value3"};
+
+ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.list_item_layout, listName);
+
+listName.setAdapter(adapter);
+
+---CustomBaseAdapter---
+CREATE CLASS
+public class MyCustomAdapter extends BaseAdapter {
+	private Context context;
+	private String[] items;
+	
+	public MyCustomAdapter(Contextcontext, String[] items) {
+		this.context = context;
+		this.items = items;
+	}
+	
+	public int getCount() {
+		return items.length;
+	}
+	
+	public long getItemId(int position) {
+		return position;
+	}
+	
+	public Object getItem(int position) {
+		return items[position];
+	}
+	
+	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder holder;
+		
+		if(convertView == null) {
+			convertView = LayoutInflater.from(context)
+							.inflate(R.layout.list_item_layout, parent, false);
+							
+			holder = new ViewHolder();
+			holder.textView = convertView.findViewById(R.id.textViewId);
+			convertView.setTag(holder);
+		
+		}else {
+			holder = (ViewHolder) convertView.getTag();
+		}
+		holder.textView.setText(items[position]);
+		
+		return convertView;
+	}
+	
+	public class ViewHolder {
+		TextView textView;
+	}
+}
+MAIN ACTIVITY
+listview = findViewById(R.id.listview);
+String[] listName = {"value1", "value2", "value3"};
+
+MyCustomAdapter adapter = new MyCustomAdapter(this, listName);
+
+listName.setAdapter(adapter);
+
